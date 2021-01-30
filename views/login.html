@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>API Server Login</title>
+    <link rel="stylesheet" href="/stylesheet/stylesheet.css" />
+  </head>
+  <body>
+    {% if user and user.id%}
+      <span class="user-name">Hello, {{user.nick}}</span>
+      <a href="/auth/logout"><button>Logout</button></a>
+      <fieldset>
+        <legend>Registration Domain</legend>
+        <form action="/domain" method="post">
+          <div>
+            <label for="type-free">Free</label>
+            <input type="radio" id="type-free" name="type" value="free">
+            <label for="type-premium">Premium</label>
+            <input type="radio" id="type-premium" name="type" value="premium">
+          </div>
+          <div>
+            <label for="host">Domain</label>
+            <input type="text" name="host" id="host" placeholder="ex) localhost:8080">
+          </div>
+          <button>Save</button>
+        </form>
+      </fieldset>
+      <table>
+        <tr>
+          <th>Domain Address</th>
+          <th>Type</th>
+          <th>Client Private Key</th>
+        </tr>
+        {% for domain in domains %}
+          <tr>
+            <td>{{domain.host}}</td>
+            <td>{{domain.type}}</td>
+            <td>{{domain.clientSecret}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <form action="/auth/login" id="login-form" method="post">
+        <h2>Login with your NodeBird account</h2>
+        <div class="input-group">
+          <label for="email">E-Mail</label>
+          <input type="email" name="email" id="email" required autofocus>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required>
+        </div>
+        <div>Sign up at localhost:3000</div>
+        <button id="login" type="submit">Login</button>
+      </form>
+      <script src="/javascripts/index.js"></script>
+    {% endif %}
+  </body>
+</html>s
