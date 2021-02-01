@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/stylesheet/stylesheet.css" />
   </head>
   <body>
-    {% if user and user.id%}
+    {% if user and user.id %}
       <span class="user-name">Hello, {{user.nick}}</span>
       <a href="/auth/logout"><button>Logout</button></a>
       <fieldset>
@@ -56,4 +56,4 @@
       <script src="/javascripts/index.js"></script>
     {% endif %}
   </body>
-</html>s
+</html>
